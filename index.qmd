@@ -1,0 +1,80 @@
+---
+title: "2023 ACS Variable List"
+format: 
+  dashboard:
+    scrolling: true
+editor: visual
+---
+
+```{r}
+library(tidycensus)
+library(tidyverse)
+library(reactable)
+
+year <- 2023
+
+#ACS Tables starting with B
+acs5_vars <- load_variables(year, "acs5", cache = TRUE)
+acs1_vars <- load_variables(year, "acs1", cache = TRUE)
+
+#ACS Tables starting with S
+acs5_subject_vars <- load_variables(year, "acs5/subject", cache = TRUE)
+acs1_subject_vars <- load_variables(year, "acs1/subject", cache = TRUE)
+
+#ACS Tables starting with DP
+acs5_profile_vars <- load_variables(year, "acs5/profile", cache = TRUE)
+acs1_profile_vars <- load_variables(year, "acs1/profile", cache = TRUE)
+
+#ACS Tables starting with CP
+acs5_cprofile_vars <- load_variables(year, "acs5/cprofile", cache = TRUE)
+acs1_cprofile_vars <- load_variables(year, "acs1/cprofile", cache = TRUE)
+
+```
+
+# 1-year
+
+## Row {.tabset}
+
+```{r}
+#| title: "Detailed Tables"
+reactable(acs1_vars, filterable = TRUE)
+```
+
+```{r}
+#| title: "Subject Tables"
+reactable(acs1_subject_vars, filterable = TRUE)
+```
+
+```{r}
+#| title: "Demographic Profiles"
+reactable(acs1_profile_vars, filterable = TRUE)
+```
+
+```{r}
+#| title: "Comparative Profiles"
+reactable(acs1_cprofile_vars, filterable = TRUE)
+```
+
+# 5-year
+
+## Row {.tabset}
+
+```{r}
+#| title: "Detailed Tables"
+reactable(acs5_vars, filterable = TRUE)
+```
+
+```{r}
+#| title: "Subject Tables"
+reactable(acs5_subject_vars, filterable = TRUE)
+```
+
+```{r}
+#| title: "Demographic Profiles"
+reactable(acs5_profile_vars, filterable = TRUE)
+```
+
+```{r}
+#| title: "Comparative Profiles"
+reactable(acs5_cprofile_vars, filterable = TRUE)
+```
